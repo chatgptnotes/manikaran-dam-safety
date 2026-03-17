@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% set active_page = 'about' %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="section-label">About JalRaksha</div>
+        <h1 class="section-title">Making India's Dams Safe, One Sensor at a Time</h1>
+        <p class="section-desc">We exist because India's 5,334 large dams deserve better than quarterly inspections with a notebook.</p>
+    </div>
+</div>
+
+<!-- ═══ MISSION ═══ -->
+<section class="section">
+    <div class="container">
+        <div class="feature-row fade-in">
+            <div class="feature-text">
+                <div class="section-label">Our Mission</div>
+                <h3>Affordable Dam Safety for Every State</h3>
+                <p>The Dam Safety Act 2021 mandates real-time monitoring for every large dam in India. But most state dam operators lack the technical capability and budget to comply. Traditional instrumentation costs crores per dam &mdash; putting compliance out of reach.</p>
+                <p style="margin-top:16px;">We break that cost barrier. By combining smart sensor sourcing, lightweight IoT connectivity, and AI-powered automation, we make per-dam monitoring affordable for the first time &mdash; so no dam operator has to choose between compliance and their budget.</p>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align:center; padding: 20px;">
+                    <div class="stat-value" style="font-size:3.5rem;">5,334</div>
+                    <div class="stat-label" style="font-size:1.1rem; margin-top:8px;">Large dams in India</div>
+                    <div style="margin:30px 0; height:1px; background: var(--glass-border);"></div>
+                    <div class="stat-value" style="font-size:3.5rem;">&lt;15%</div>
+                    <div class="stat-label" style="font-size:1.1rem; margin-top:8px;">Have adequate monitoring</div>
+                    <div style="margin:30px 0; height:1px; background: var(--glass-border);"></div>
+                    <div style="color: var(--cyan-400); font-size:1rem; font-weight:600;">We're here to change this.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ APPROACH ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Our Approach</div>
+            <h2 class="section-title">Start Small. Prove Value. Scale.</h2>
+            <p class="section-desc">We don't ask you to instrument your entire dam on day one. We start with a critical section, demonstrate value, and expand based on results.</p>
+        </div>
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-label">Phase 1</div>
+                <h4>Deploy on One Critical Section</h4>
+                <p>Install 15-20 sensors on the highest-risk section of your dam. Get real-time data flowing to the dashboard within weeks.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-label">Phase 2</div>
+                <h4>Capture First Monsoon Season</h4>
+                <p>The monsoon is the ultimate stress test for any dam. We capture the full July-October dataset &mdash; the foundation for AI model training.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-label">Phase 3</div>
+                <h4>AI Models Go Live</h4>
+                <p>With 12+ months of data, our anomaly detection and inflow forecasting models activate &mdash; adding predictive intelligence to your monitoring.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-label">Phase 4</div>
+                <h4>Expand &amp; Automate Compliance</h4>
+                <p>Scale sensor coverage across the full dam. Automated Dam Safety Act reports flow directly to NDSA/SDSO portals.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ VALUES ═══ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">What Drives Us</div>
+            <h2 class="section-title">Core Principles</h2>
+        </div>
+        <div class="card-grid card-grid-3 fade-in">
+            <div class="card">
+                <div class="card-icon">&#x1F3AF;</div>
+                <h3>Farmer-First Outcomes</h3>
+                <p>Every sensor reading, every algorithm, every report ultimately serves one purpose: more water reaching more farmers, more safely.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#x1F527;</div>
+                <h3>Affordable by Design</h3>
+                <p>We engineer for cost from day one &mdash; smart sourcing, lightweight infrastructure, managed cloud services &mdash; so dam safety isn't a luxury.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">&#x1F91D;</div>
+                <h3>Partner, Not Vendor</h3>
+                <p>We co-invest in outcomes with our clients. Your dam's safety is our reputation. We succeed only when your dam is demonstrably safer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section section-dark" style="text-align:center;">
+    <div class="container fade-in">
+        <div class="section-header">
+            <h2 class="section-title">Let's Talk About Your Dams</h2>
+            <p class="section-desc">We work with state dam operators, irrigation departments, and central agencies. Tell us about your monitoring needs.</p>
+        </div>
+        <a href="/contact" class="btn btn-primary">Get in Touch <span class="btn-icon">&rarr;</span></a>
+    </div>
+</section>
+{% endblock %}

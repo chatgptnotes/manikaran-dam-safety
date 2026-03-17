@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% set active_page = 'solutions' %}
+{% block title %}Solutions{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="section-label">Our Solutions</div>
+        <h1 class="section-title">Three Pillars of Water Infrastructure Intelligence</h1>
+        <p class="section-desc">From structural health monitoring to irrigation optimization &mdash; a unified platform for the entire water infrastructure lifecycle.</p>
+    </div>
+</div>
+
+<!-- ═══ PILLAR 1: DAM SHM ═══ -->
+<section class="section" id="shm">
+    <div class="container">
+        <div class="feature-row fade-in">
+            <div class="feature-text">
+                <div class="section-label">Pillar 1</div>
+                <h3>Dam Structural Health Monitoring &amp; Compliance</h3>
+                <p>Continuous, automated monitoring of your dam's structural integrity with sensors measuring every critical parameter &mdash; replacing quarterly manual inspections with 24/7 digital surveillance.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> Pore water pressure monitoring (vibrating wire piezometers)</li>
+                    <li><span class="check">&#10003;</span> Structural displacement and crack monitoring</li>
+                    <li><span class="check">&#10003;</span> Embankment slope tilt detection (MEMS tiltmeters)</li>
+                    <li><span class="check">&#10003;</span> Seepage volume measurement at toe drains</li>
+                    <li><span class="check">&#10003;</span> Automated Dam Safety Act compliance reports</li>
+                    <li><span class="check">&#10003;</span> Emergency alert system (SMS + email + dashboard)</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="diagram">     EARTHEN DAM CROSS-SECTION
+          Monitoring Points
+
+  Crest ─── [GNSS] [Tiltmeter]
+       ╱╲
+      ╱  ╲─── [Crack Meter]
+     ╱    ╲
+    ╱ Core ╲── [Piezometer x4]
+   ╱________╲     (pore pressure)
+  │Foundation│── [Inclinometer]
+  └──────────┘
+  Toe Drain ──── [Seepage Meter]
+         │
+    LoRaWAN → Cloud → Alert!</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PILLAR 2: IRRIGATION ═══ -->
+<section class="section section-dark" id="irrigation">
+    <div class="container">
+        <div class="feature-row reverse fade-in">
+            <div class="feature-text">
+                <div class="section-label">Pillar 2</div>
+                <h3>Irrigation Canal Optimization</h3>
+                <p>India's canals lose 35-45% of water before it reaches farmers. Our platform uses real-time flow sensors and AI to detect losses, optimize scheduling, and ensure equitable distribution from head to tail.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> Real-time flow measurement at canal off-takes</li>
+                    <li><span class="check">&#10003;</span> Water mass-balance analysis (theft and leak detection)</li>
+                    <li><span class="check">&#10003;</span> Crop water demand estimation via satellite NDVI + weather</li>
+                    <li><span class="check">&#10003;</span> Dynamic canal scheduling replacing static Warabandi</li>
+                    <li><span class="check">&#10003;</span> Head-reach vs. tail-end equity monitoring</li>
+                    <li><span class="check">&#10003;</span> Soil moisture integration for precision irrigation</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="diagram">    CANAL NETWORK MONITORING
+
+  Reservoir ──→ Main Canal
+                   │
+          ┌────────┼────────┐
+          ▼        ▼        ▼
+     Branch 1  Branch 2  Branch 3
+      [Flow]    [Flow]    [Flow]
+          │        │        │
+          ▼        ▼        ▼
+      Farmers   Farmers  Farmers
+      [Soil]    [Soil]   [Soil]
+
+  Loss = Inflow - Sum(Outflows)
+  If Loss > 15% → ALERT: Leak!</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PILLAR 3: FLOOD ═══ -->
+<section class="section" id="flood">
+    <div class="container">
+        <div class="feature-row fade-in">
+            <div class="feature-text">
+                <div class="section-label">Pillar 3</div>
+                <h3>Reservoir Operations &amp; Flood Forecasting</h3>
+                <p>7-day inflow forecasting powered by AI and IMD weather data, enabling proactive gate operations instead of reactive panic releases during monsoon.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> 7-day inflow forecasting (LSTM + ensemble weather models)</li>
+                    <li><span class="check">&#10003;</span> Optimal reservoir rule curve computation</li>
+                    <li><span class="check">&#10003;</span> Spillway gate operation advisory</li>
+                    <li><span class="check">&#10003;</span> Downstream flood risk assessment</li>
+                    <li><span class="check">&#10003;</span> Cross-dam coordination for river basin management</li>
+                    <li><span class="check">&#10003;</span> Historical analysis and seasonal pattern recognition</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="diagram">  7-DAY INFLOW FORECAST
+
+  Flow │     ╭──╮
+  (MCM)│    ╱    ╲    forecast
+       │   ╱      ╲───── ···→
+       │──╱         ╲
+       │╱   actual   ╲
+       └─────────────────→
+        Day 1  2  3  4  5  6  7
+
+  ┌─────────────────────────┐
+  │ Gate Advisory: Open G3  │
+  │ by 0.5m at 06:00 hrs   │
+  │ to maintain flood       │
+  │ cushion of 200 MCM      │
+  └─────────────────────────┘</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section section-dark" style="text-align:center;">
+    <div class="container fade-in">
+        <div class="section-header">
+            <h2 class="section-title">Which Solution Fits Your Dam?</h2>
+            <p class="section-desc">Every dam is different. Let us assess your monitoring needs and recommend the right package.</p>
+        </div>
+        <a href="/contact" class="btn btn-primary">Request a Site Assessment <span class="btn-icon">&rarr;</span></a>
+    </div>
+</section>
+{% endblock %}

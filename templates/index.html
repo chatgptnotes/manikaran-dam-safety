@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% set active_page = 'home' %}
+{% block title %}JalRaksha{% endblock %}
+{% block body_class %}page-home{% endblock %}
+
+{% block content %}
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> Dam Safety Act 2021 Compliance</div>
+        <h1 class="hero-title">
+            Protecting India's Dams<br>
+            with <span class="highlight">Intelligent Monitoring</span>
+        </h1>
+        <p class="hero-subtitle">
+            Real-time IoT sensors. AI-powered anomaly detection.
+            Automated compliance reports. One platform for the safety of
+            5,334 large dams.
+        </p>
+        <div class="hero-actions">
+            <a href="/solutions" class="btn btn-primary">Explore Solutions <span class="btn-icon">&rarr;</span></a>
+            <a href="/contact" class="btn btn-outline">Request a Demo</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="stats-bar fade-in">
+            <div class="stat">
+                <div class="stat-value">5,334</div>
+                <div class="stat-label">Large Dams in India</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">&lt;15%</div>
+                <div class="stat-label">Have Adequate Monitoring</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">1,137</div>
+                <div class="stat-label">Dams Over 50 Years Old</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Continuous Surveillance</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ WHAT WE DO ═══ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">What We Do</div>
+            <h2 class="section-title">End-to-End Dam Safety, Automated</h2>
+            <p class="section-desc">
+                From sensors embedded in your dam to compliance reports filed with NDSA &mdash;
+                we handle the entire monitoring lifecycle.
+            </p>
+        </div>
+        <div class="card-grid card-grid-3">
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F4E1;</div>
+                <h3>Real-Time Monitoring</h3>
+                <p>IoT sensors measuring pore pressure, structural movement, seepage, and tilt &mdash; every 15 minutes, 24/7, wirelessly transmitted to the cloud.</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F9E0;</div>
+                <h3>AI Anomaly Detection</h3>
+                <p>Machine learning models trained on monsoon data detect seepage anomalies, displacement trends, and structural distress days before they become critical.</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F4CB;</div>
+                <h3>Compliance Automation</h3>
+                <p>Auto-generate Dam Safety Act reports in NDSA/SDSO-mandated formats &mdash; pre-monsoon, post-monsoon, annual, and emergency reports with one click.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="feature-row fade-in">
+            <div class="feature-text">
+                <div class="section-label">Why JalRaksha</div>
+                <h3>Purpose-Built for Indian Dams</h3>
+                <p>
+                    We are not a generic IT company selling "smart city" solutions.
+                    Our platform is designed from the ground up for Dam Safety Act compliance,
+                    Indian regulatory formats, and the harsh conditions of Indian dam sites.
+                </p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> Sensors rated for monsoon, tropical, and remote conditions</li>
+                    <li><span class="check">&#10003;</span> LoRaWAN wireless &mdash; works where there's no internet infrastructure</li>
+                    <li><span class="check">&#10003;</span> Reports in NDSA, SDSO, and CWC prescribed formats</li>
+                    <li><span class="check">&#10003;</span> Data hosted on Indian cloud (AWS Mumbai)</li>
+                    <li><span class="check">&#10003;</span> Affordable &mdash; a fraction of traditional instrumentation costs</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div class="diagram">  ┌─────────────┐
+  │  Dam Sensors │
+  │ (IoT + MEMS) │
+  └──────┬──────┘
+         │ LoRaWAN
+         ▼
+  ┌─────────────┐
+  │   Gateway   │
+  │  Solar + 4G │
+  └──────┬──────┘
+         │ Cloud
+         ▼
+  ┌─────────────┐
+  │  Dashboard  │
+  │  AI Engine  │
+  │  Compliance │
+  └─────────────┘</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section" style="text-align:center;">
+    <div class="container fade-in">
+        <div class="section-header">
+            <div class="section-label">Get Started</div>
+            <h2 class="section-title">Ready to Make Your Dam Smart?</h2>
+            <p class="section-desc">
+                Whether you manage one dam or a thousand, we can help you achieve
+                Dam Safety Act compliance with continuous, automated monitoring.
+            </p>
+        </div>
+        <div class="hero-actions">
+            <a href="/contact" class="btn btn-primary">Schedule a Consultation <span class="btn-icon">&rarr;</span></a>
+            <a href="/technology" class="btn btn-outline">See the Technology</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/particles.js"></script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% set active_page = 'contact' %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="section-label">Contact Us</div>
+        <h1 class="section-title">Let's Discuss Your Dam Monitoring Needs</h1>
+        <p class="section-desc">Whether you're a state dam operator exploring compliance options or a central agency looking for technology partners &mdash; we'd love to hear from you.</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="card-grid card-grid-2">
+            <!-- ═══ FORM ═══ -->
+            <div class="fade-in">
+                <h2 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom:8px;">Send an Enquiry</h2>
+                <p style="color:var(--text-secondary); margin-bottom:30px; font-size:0.95rem;">Fill out the form below and our team will respond within 24 hours.</p>
+
+                <form id="enquiryForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name *</label>
+                            <input class="form-input" type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="organization">Organization</label>
+                            <input class="form-input" type="text" id="organization" name="organization" placeholder="Department / Corporation / Agency">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <input class="form-input" type="email" id="email" name="email" required placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input class="form-input" type="tel" id="phone" name="phone" placeholder="+91 ...">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="subject">Area of Interest</label>
+                            <select class="form-input form-select" id="subject" name="subject">
+                                <option value="">Select an option...</option>
+                                <option value="dam-shm">Dam Structural Health Monitoring</option>
+                                <option value="irrigation">Irrigation Canal Optimization</option>
+                                <option value="flood">Flood Forecasting &amp; Gate Advisory</option>
+                                <option value="compliance">Dam Safety Act Compliance</option>
+                                <option value="assessment">Site Assessment Request</option>
+                                <option value="demo">Live Demo Request</option>
+                                <option value="partnership">Partnership / Collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" for="message">Message *</label>
+                            <textarea class="form-input form-textarea" id="message" name="message" required placeholder="Tell us about your dam(s), monitoring needs, or any questions you have..."></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                                Send Enquiry <span class="btn-icon">&rarr;</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="formSuccess" class="form-success">
+                    <h3>&#10003; Enquiry Sent Successfully</h3>
+                    <p style="color:var(--text-secondary);">Thank you for reaching out. Our team will review your enquiry and get back to you within 24 hours.</p>
+                </div>
+            </div>
+
+            <!-- ═══ CONTACT INFO ═══ -->
+            <div class="fade-in">
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-icon">&#x1F4CD;</div>
+                    <h3>Our Presence</h3>
+                    <ul class="card-list">
+                        <li><span class="check">&#x1F3E2;</span> Nagpur, Maharashtra (Operations)</li>
+                        <li><span class="check">&#x1F3E2;</span> New Delhi (Business Development)</li>
+                    </ul>
+                </div>
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-icon">&#x1F4E7;</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@jalraksha.com" style="color:var(--cyan-400);">info@jalraksha.com</a></p>
+                </div>
+                <div class="card" style="margin-bottom:24px;">
+                    <div class="card-icon">&#x1F465;</div>
+                    <h3>Who Should Reach Out?</h3>
+                    <ul class="card-list">
+                        <li><span class="check">&#10003;</span> State Dam Safety Organizations (SDSOs)</li>
+                        <li><span class="check">&#10003;</span> Irrigation Development Corporations</li>
+                        <li><span class="check">&#10003;</span> Water Resources Departments</li>
+                        <li><span class="check">&#10003;</span> Central Water Commission (CWC) officials</li>
+                        <li><span class="check">&#10003;</span> Dam operators and maintenance teams</li>
+                        <li><span class="check">&#10003;</span> Research institutions &amp; universities</li>
+                        <li><span class="check">&#10003;</span> Sensor manufacturers (partnership)</li>
+                        <li><span class="check">&#10003;</span> Investors interested in water-tech</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

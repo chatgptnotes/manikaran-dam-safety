@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% set active_page = 'technology' %}
+{% block title %}Technology{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="section-label">Our Technology</div>
+        <h1 class="section-title">Built for Dams. Powered by AI.</h1>
+        <p class="section-desc">A purpose-built technology stack combining industrial-grade IoT sensors, machine learning, and cloud computing for continuous dam safety monitoring.</p>
+    </div>
+</div>
+
+<!-- ═══ PLATFORM OVERVIEW ═══ -->
+<section class="section" id="platform">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Platform Architecture</div>
+            <h2 class="section-title">Edge to Cloud to Compliance</h2>
+        </div>
+        <div class="card fade-in" style="padding:40px;">
+            <div class="diagram" style="text-align:center; font-size: 0.8rem;">
+╔════════════════════════════════════════════════════════════════╗
+║  EDGE LAYER (At Dam Site)                                      ║
+║  Piezometers │ Crack Meters │ Tiltmeters │ Seepage Sensors     ║
+║       └──── Modbus RTU / SDI-12 ────→ Data Logger ─────┐      ║
+╚═════════════════════════════════════════════════════════╪══════╝
+                                                          │
+                                                    LoRaWAN Radio
+                                                          │
+                                               ┌──────────▼──────────┐
+                                               │   Solar-Powered     │
+                                               │   LoRaWAN Gateway   │
+                                               │   + 4G Backhaul     │
+                                               └──────────┬──────────┘
+                                                          │
+╔═════════════════════════════════════════════════════════╪══════╗
+║  CLOUD LAYER (AWS Mumbai)                               │      ║
+║  IoT Core (MQTT) ← ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘      ║
+║       │                                                        ║
+║       ├──→ Time-Series Database (TimescaleDB)                  ║
+║       ├──→ AI/ML Engine (Anomaly Detection + Forecasting)      ║
+║       ├──→ Alert Engine (SMS + Email + Dashboard)              ║
+║       └──→ Compliance Engine (Report Generation)               ║
+╚════════════════════════════════════════════════════════════════╝
+                          │
+╔════════════════════════╪═══════════════════════════════════════╗
+║  APPLICATION LAYER     ▼                                       ║
+║  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐ ║
+║  │ Dam Safety │ │   Canal    │ │   Flood    │ │  Compliance│ ║
+║  │ Dashboard  │ │  Manager   │ │  Forecast  │ │  Reports   │ ║
+║  └────────────┘ └────────────┘ └────────────┘ └────────────┘ ║
+╚════════════════════════════════════════════════════════════════╝</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SENSORS ═══ -->
+<section class="section section-dark" id="sensors">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">IoT Sensor Network</div>
+            <h2 class="section-title">Industrial-Grade Geotechnical Instrumentation</h2>
+            <p class="section-desc">Proven sensor technologies deployed in dams worldwide, optimized for Indian conditions &mdash; monsoon-rated, solar-powered, wirelessly connected.</p>
+        </div>
+        <div class="card-grid card-grid-3">
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F4A7;</div>
+                <h3>Pore Pressure Monitoring</h3>
+                <p>Vibrating wire piezometers embedded in the dam body measure water pressure at multiple elevations &mdash; the single most important indicator of embankment health.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> 0.025% F.S. accuracy</li>
+                    <li><span class="check">&#10003;</span> 20+ year operational life</li>
+                    <li><span class="check">&#10003;</span> Stainless steel, IP68 rated</li>
+                </ul>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F50D;</div>
+                <h3>Structural Movement</h3>
+                <p>Crack meters, MEMS tiltmeters, and inclinometers detect millimeter-level displacement and angular changes in dam structures.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> 0.001&deg; tilt resolution</li>
+                    <li><span class="check">&#10003;</span> 0.01 mm displacement accuracy</li>
+                    <li><span class="check">&#10003;</span> Three-axis measurement</li>
+                </ul>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F30A;</div>
+                <h3>Seepage &amp; Flow</h3>
+                <p>Ultrasonic flow meters at toe drains quantify seepage volume. Combined with turbidity sensors, they detect internal erosion before it becomes visible.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> Non-contact measurement</li>
+                    <li><span class="check">&#10003;</span> &plusmn;1% flow accuracy</li>
+                    <li><span class="check">&#10003;</span> Turbidity correlation</li>
+                </ul>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F4F6;</div>
+                <h3>LoRaWAN Connectivity</h3>
+                <p>Long-range, low-power wireless network covering up to 15 km of dam length. Solar-powered gateways with 4G backhaul &mdash; works where there is zero infrastructure.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> 10-15 km range</li>
+                    <li><span class="check">&#10003;</span> 7-10 year sensor battery life</li>
+                    <li><span class="check">&#10003;</span> AES-128 encryption</li>
+                </ul>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F6F0;</div>
+                <h3>Satellite Monitoring (InSAR)</h3>
+                <p>Sub-millimeter surface deformation detection from space using Sentinel-1 and commercial SAR satellites &mdash; covering the entire dam surface without any ground equipment.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> Sub-mm deformation accuracy</li>
+                    <li><span class="check">&#10003;</span> Monthly full-dam coverage</li>
+                    <li><span class="check">&#10003;</span> No on-site hardware needed</li>
+                </ul>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">&#x1F681;</div>
+                <h3>Drone + AI Inspection</h3>
+                <p>Quarterly LiDAR and photogrammetry surveys with AI-powered crack detection. Creates high-resolution 3D models of dam faces and spillway aprons.</p>
+                <ul class="card-list">
+                    <li><span class="check">&#10003;</span> cm-level 3D resolution</li>
+                    <li><span class="check">&#10003;</span> AI crack detection (CNN)</li>
+                    <li><span class="check">&#10003;</span> Sedimentation mapping</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ AI/ML ═══ -->
+<section class="section" id="ai">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">AI/ML Engine</div>
+            <h2 class="section-title">Intelligence That Prevents Disasters</h2>
+            <p class="section-desc">Our models learn from every monsoon season, getting smarter over time at predicting anomalies and optimizing water management.</p>
+        </div>
+        <div class="card-grid card-grid-2">
+            <div class="card fade-in">
+                <h3>Seepage Anomaly Detection</h3>
+                <p>LSTM autoencoder trained on seasonal baselines. Detects rising pore pressure trends, accelerating creep, and abnormal seepage days to weeks before they become critical.</p>
+                <table class="tech-table">
+                    <tr><th>Parameter</th><th>Specification</th></tr>
+                    <tr><td>Architecture</td><td>Isolation Forest + LSTM Autoencoder</td></tr>
+                    <tr><td>Input</td><td>Piezometer readings, reservoir level, temperature, rainfall</td></tr>
+                    <tr><td>Output</td><td>Anomaly score (0-1) with root-cause attribution</td></tr>
+                    <tr><td>Detection Lead Time</td><td>Days to weeks before critical threshold</td></tr>
+                </table>
+            </div>
+            <div class="card fade-in">
+                <h3>Inflow Forecasting</h3>
+                <p>7-day hourly inflow prediction using LSTM with temporal attention, fed by IMD gridded rainfall, GFS/ECMWF ensemble weather models, and catchment soil moisture.</p>
+                <table class="tech-table">
+                    <tr><th>Parameter</th><th>Specification</th></tr>
+                    <tr><td>Architecture</td><td>LSTM + Temporal Attention</td></tr>
+                    <tr><td>Input</td><td>IMD rainfall, GFS/ECMWF forecasts, soil moisture</td></tr>
+                    <tr><td>Forecast Horizon</td><td>7 days (hourly resolution)</td></tr>
+                    <tr><td>Target Accuracy</td><td>85%+ (3-day), 70%+ (7-day)</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ DATA STANDARDS ═══ -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Compliance &amp; Standards</div>
+            <h2 class="section-title">Built for Indian Regulatory Requirements</h2>
+        </div>
+        <div class="card-grid card-grid-3 fade-in">
+            <div class="card">
+                <h3>Dam Safety Act 2021</h3>
+                <p>Automated report generation in NDSA-prescribed formats: pre-monsoon, post-monsoon, annual, and 5-year comprehensive reviews.</p>
+            </div>
+            <div class="card">
+                <h3>IS:7436 Compliance</h3>
+                <p>All instrumentation follows Indian Standard IS:7436 for dam monitoring. Sensors calibrated against NABL-traceable reference standards.</p>
+            </div>
+            <div class="card">
+                <h3>CWC Data Formats</h3>
+                <p>Direct integration with Central Water Commission data sheets, India-WRIS API, and WaterML 2.0 (OGC) for hydrological data exchange.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="section" style="text-align:center;">
+    <div class="container fade-in">
+        <div class="section-header">
+            <h2 class="section-title">See It in Action</h2>
+            <p class="section-desc">Request a live demo of our dashboard with real dam monitoring data.</p>
+        </div>
+        <a href="/contact" class="btn btn-primary">Request a Demo <span class="btn-icon">&rarr;</span></a>
+    </div>
+</section>
+{% endblock %}
