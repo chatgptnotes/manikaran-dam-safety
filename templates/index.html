@@ -4,7 +4,7 @@
 {% block body_class %}page-home{% endblock %}
 
 {% block content %}
-<!-- ═══ HERO ═══ -->
+<!-- ═══ HERO — Full viewport animated background + hero text ═══ -->
 <section class="hero">
     <canvas id="heroCanvas" class="hero-canvas"></canvas>
     <div class="hero-gradient"></div>
@@ -14,11 +14,20 @@
             Protecting India's Dams<br>
             with <span class="highlight">Intelligent Monitoring</span>
         </h1>
-        <p class="hero-subtitle">
-            Real-time IoT sensors. AI-powered anomaly detection.
-            Automated compliance reports. One platform for the safety of
-            5,334 large dams.
-        </p>
+
+        <!-- Gemini AI-powered dynamic content -->
+        <div class="ai-hero-block">
+            <div class="ai-insight" id="aiInsight">Where sensors meet safety &mdash; guarding India's lifelines.</div>
+            <div class="ai-fact" id="aiFact">Less than 15% of India's 5,334 large dams have adequate safety instrumentation.</div>
+            <div class="ai-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/>
+                    <line x1="10" y1="22" x2="14" y2="22"/>
+                </svg>
+                AI-Generated Insight
+            </div>
+        </div>
+
         <div class="hero-actions">
             <a href="/solutions" class="btn btn-primary">Explore Solutions <span class="btn-icon">&rarr;</span></a>
             <a href="/contact" class="btn btn-outline">Request a Demo</a>
@@ -31,7 +40,7 @@
     <div class="container">
         <div class="stats-bar fade-in">
             <div class="stat">
-                <div class="stat-value">5,334</div>
+                <div class="stat-value" data-count="5334">0</div>
                 <div class="stat-label">Large Dams in India</div>
             </div>
             <div class="stat">
@@ -39,7 +48,7 @@
                 <div class="stat-label">Have Adequate Monitoring</div>
             </div>
             <div class="stat">
-                <div class="stat-value">1,137</div>
+                <div class="stat-value" data-count="1137">0</div>
                 <div class="stat-label">Dams Over 50 Years Old</div>
             </div>
             <div class="stat">
@@ -144,5 +153,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/js/particles.js"></script>
+<script src="/js/hero-animation.js"></script>
 {% endblock %}

@@ -40,16 +40,16 @@ def contact():
 def enquiry():
     data = request.get_json() if request.is_json else request.form.to_dict()
     name = data.get('name', '').strip()
-    org = data.get('organization', '').strip()
     email = data.get('email', '').strip()
-    phone = data.get('phone', '').strip()
-    subject = data.get('subject', '').strip()
     message = data.get('message', '').strip()
 
     if not name or not email or not message:
         return jsonify({'success': False, 'error': 'Name, email, and message are required.'}), 400
 
-    # In production: send email, store in DB, or forward to CRM
+    org = data.get('organization', '').strip()
+    phone = data.get('phone', '').strip()
+    subject = data.get('subject', '').strip()
+
     print(f"[ENQUIRY] {name} | {org} | {email} | {phone} | {subject}")
     print(f"[MESSAGE] {message}")
 
@@ -57,6 +57,59 @@ def enquiry():
         'success': True,
         'message': 'Thank you for your enquiry. Our team will get back to you within 24 hours.'
     })
+
+
+@app.route('/api/ai-hero', methods=['GET'])
+def ai_hero():
+    """Use Gemini to generate dynamic hero content — rotating facts and insights."""
+    api_key = os.environ.get('GEMINI_API_KEY', '')
+    if not api_key:
+        return jsonify({
+            'success': True,
+            'insight': 'Protecting India\'s 5,334 large dams with intelligent, real-time monitoring.',
+            'fact': 'Less than 15% of India\'s dams have adequate safety instrumentation.'
+        })
+
+    try:
+        import google.generativeai as genai
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel('gemini-2.0-flash')
+
+        prompt = """Generate a single JSON object with exactly two fields for a dam safety technology company's website hero section:
+
+1. "insight" — A powerful, poetic one-liner (under 15 words) about dam safety, water infrastructure, or protecting lives through technology. Make it evocative and different each time. Examples of tone: "Where sensors meet safety", "Every drop monitored, every life protected", "The silent guardians of a billion lives".
+
+2. "fact" — A compelling real statistic or fact about dam safety in India (under 25 words). Use real data: India has 5,334 large dams, Dam Safety Act 2021, 1,137 dams over 50 years old, <15% have monitoring, 35-45% canal water loss, etc.
+
+Return ONLY the JSON object, no markdown, no code blocks."""
+
+        response = model.generate_content(
+            prompt,
+            generation_config={
+                'max_output_tokens': 200,
+                'temperature': 1.0,
+            }
+        )
+
+        import json
+        text = response.text.strip()
+        if text.startswith('```'):
+            text = text.split('\n', 1)[1].rsplit('```', 1)[0].strip()
+
+        data = json.loads(text)
+        return jsonify({
+            'success': True,
+            'insight': data.get('insight', 'Intelligent monitoring for India\'s critical infrastructure.'),
+            'fact': data.get('fact', 'Over 5,334 large dams in India need continuous safety monitoring.')
+        })
+
+    except Exception as e:
+        print(f"[AI-HERO ERROR] {e}")
+        return jsonify({
+            'success': True,
+            'insight': 'Where technology meets water safety.',
+            'fact': 'India\'s Dam Safety Act 2021 mandates real-time monitoring for all large dams.'
+        })
 
 
 if __name__ == '__main__':
