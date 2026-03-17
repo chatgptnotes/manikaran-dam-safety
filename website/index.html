@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manikaran Dam Safety - IoT Compliance Platform for India's Dams</title>
+  <meta name="description" content="Affordable IoT monitoring and automated compliance reporting for dams under India's Dam Safety Act 2021. Starting with Gosikhurd Dam, Maharashtra." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1d4ed8;
+      --blue-light: #3b82f6;
+      --blue-dark: #1e3a8a;
+      --slate: #0f172a;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --white: #ffffff;
+      --amber: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--white); color: var(--slate); line-height: 1.6; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; padding: 0 2rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--blue-light); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--slate-700); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: white; padding: 0.5rem 1.25rem; border-radius: 6px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%); color: white; padding: 6rem 2rem 5rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-badge { display: inline-block; background: rgba(59,130,246,0.3); border: 1px solid rgba(59,130,246,0.5); color: #93c5fd; padding: 0.35rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.03em; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .hero h1 span { color: #60a5fa; }
+    .hero p { font-size: 1.15rem; color: #94a3b8; max-width: 600px; margin: 0 auto 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: white; color: var(--blue-dark); padding: 0.875rem 2rem; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 0.875rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: border-color 0.2s; }
+    .btn-secondary:hover { border-color: white; }
+    .hero-stats { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 2.5rem; font-weight: 800; color: white; line-height: 1; }
+    .hero-stat .label { font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem; }
+
+    /* SECTION */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; color: var(--slate); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-sub { font-size: 1.05rem; color: var(--slate-500); max-width: 600px; }
+
+    /* PROBLEM */
+    .problem { background: #f8fafc; }
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .problem-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.75rem; border-left: 4px solid var(--red); }
+    .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--slate); }
+    .problem-card p { font-size: 0.9rem; color: var(--slate-500); }
+    .problem-card .icon { width: 40px; height: 40px; background: #fef2f2; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+
+    /* SOLUTION */
+    .solution-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .step { text-align: center; padding: 2rem 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; background: white; transition: transform 0.2s, box-shadow 0.2s; }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .step-num { width: 48px; height: 48px; background: var(--blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin: 0 auto 1rem; }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.875rem; color: var(--slate-500); }
+
+    /* GOSIKHURD */
+    .pilot { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; }
+    .pilot .section-label { color: #60a5fa; }
+    .pilot .section-title { color: white; }
+    .pilot .section-sub { color: #94a3b8; }
+    .pilot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+    .pilot-table { border-collapse: collapse; width: 100%; }
+    .pilot-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .pilot-table td { padding: 0.75rem 0; font-size: 0.9rem; }
+    .pilot-table td:first-child { color: #94a3b8; width: 45%; }
+    .pilot-table td:last-child { color: white; font-weight: 600; }
+    .pilot-phases { display: flex; flex-direction: column; gap: 1rem; }
+    .phase { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.25rem; }
+    .phase-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .phase-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .phase-dot.green { background: var(--green); }
+    .phase-dot.blue { background: var(--blue-light); }
+    .phase-dot.amber { background: var(--amber); }
+    .phase-dot.purple { background: #a855f7; }
+    .phase h4 { font-size: 0.9rem; font-weight: 700; color: white; }
+    .phase p { font-size: 0.8rem; color: #94a3b8; }
+
+    /* MARKET */
+    .market-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .market-card { text-align: center; padding: 2.5rem 1.5rem; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; }
+    .market-card .big { font-size: 2.5rem; font-weight: 800; color: var(--blue); line-height: 1; }
+    .market-card .desc { font-size: 0.875rem; color: var(--slate-500); margin-top: 0.5rem; }
+
+    /* MODEL */
+    .model { background: #f8fafc; }
+    .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .model-card { background: white; border-radius: 12px; padding: 2rem; border: 1px solid #e2e8f0; }
+    .model-card .tag { display: inline-block; background: #eff6ff; color: var(--blue); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 100px; margin-bottom: 1rem; }
+    .model-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .model-card .price { font-size: 1.75rem; font-weight: 800; color: var(--blue); }
+    .model-card p { font-size: 0.875rem; color: var(--slate-500); margin-top: 0.5rem; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, #1d4ed8, #1e40af); color: white; text-align: center; }
+    .cta-section h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { color: #bfdbfe; max-width: 500px; margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: var(--slate); color: #94a3b8; text-align: center; padding: 2rem; font-size: 0.8rem; }
+    footer a { color: #60a5fa; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .pilot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Manikaran <span>Dam Safety</span></div>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#pilot">Pilot</a></li>
+      <li><a href="#market">Market</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Dam Safety Act 2021 Compliance Platform</div>
+  <h1>India's Dams Need<br><span>Real-Time Monitoring.</span><br>We Build It.</h1>
+  <p>Affordable IoT sensors plus automated compliance reporting for India's 5,334 large dams. Starting with Gosikhurd, Nagpur.</p>
+  <div class="hero-cta">
+    <a href="#pilot" class="btn-primary">View Pilot Project</a>
+    <a href="#solution" class="btn-secondary">How It Works</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">5,334</div><div class="label">Large dams in India</div></div>
+    <div class="hero-stat"><div class="num">&lt;15%</div><div class="label">With adequate monitoring</div></div>
+    <div class="hero-stat"><div class="num">600 Cr+</div><div class="label">Addressable market (INR)</div></div>
+    <div class="hero-stat"><div class="num">2021</div><div class="label">Dam Safety Act mandates compliance</div></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <div class="section-title">India's Dams Are Flying Blind</div>
+    <p class="section-sub">The Dam Safety Act 2021 mandates real-time instrumentation and compliance reporting, but most dam operators lack the digital infrastructure to comply.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">
+          <svg width="20" height="20" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        </div>
+        <h3>No Real-Time Monitoring</h3>
+        <p>Over 1,100 dams exceed their 50-year design life with manual inspection rounds at best. Sensors are absent or non-functional.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">
+          <svg width="20" height="20" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3>Compliance Burden</h3>
+        <p>Dam Safety Act 2021 requires NDSA/SDSO-format reports. State operators face penalties including imprisonment for non-compliance.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">
+          <svg width="20" height="20" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        </div>
+        <h3>No Affordable Solution Exists</h3>
+        <p>Current providers offer expensive enterprise SCADA setups. No company offers compliance-as-a-service designed for India's dam operators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="section-label">Our Solution</div>
+    <div class="section-title">IoT + AI + Automated Compliance</div>
+    <p class="section-sub">Install low-cost sensors, stream data to the cloud, detect anomalies automatically, and generate compliance reports in one click.</p>
+    <div class="solution-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Install Sensors</h3>
+        <p>Piezometers, crack meters, tiltmeters connected via LoRaWAN. Zero civil work. 1 day per section.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Stream to Cloud</h3>
+        <p>Real-time data ingestion via LoRaWAN or 4G. Edge processing for local alarms. No internet dependency for core safety.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Detect Anomalies</h3>
+        <p>Threshold alerts, rate-of-change detection, and ML-based trend analysis. Alerts via SMS, WhatsApp, and dashboard.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Auto Compliance Reports</h3>
+        <p>One-click PDF reports in NDSA/SDSO-mandated formats. Monthly, quarterly, annual. Fully automated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section class="pilot" id="pilot">
+  <div class="container">
+    <div class="section-label">Pilot Project</div>
+    <div class="section-title">Starting at Gosikhurd Dam, Nagpur</div>
+    <p class="section-sub">India's most watched dam - INR 25,972 Cr invested, only 14% irrigated. National visibility. Clear ROI story.</p>
+    <div class="pilot-grid">
+      <div>
+        <table class="pilot-table">
+          <tr><td>Location</td><td>Bhandara District, 60 km from Nagpur</td></tr>
+          <tr><td>Type</td><td>Earthen dam, 11.35 km long</td></tr>
+          <tr><td>Initial scope</td><td>2 km critical section, 15 to 20 sensors</td></tr>
+          <tr><td>Sensor cost</td><td>INR 15 lakh</td></tr>
+          <tr><td>Timeline</td><td>6 months to first data</td></tr>
+          <tr><td>Authority</td><td>VIDC, Nagpur</td></tr>
+          <tr><td>Existing sensors</td><td>Encardio Rite (partial), to build on</td></tr>
+        </table>
+      </div>
+      <div class="pilot-phases">
+        <div class="phase">
+          <div class="phase-header"><div class="phase-dot green"></div><h4>Phase 0 (0 to 6 months) - Gosikhurd Pilot</h4></div>
+          <p>Install 20 sensors on 2 km section. First real-time dashboard. Prove technology works.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-header"><div class="phase-dot blue"></div><h4>Phase 1 (6 to 18 months) - Maharashtra Scale</h4></div>
+          <p>Expand to full Gosikhurd dam. First paying VIDC/MAHAGENCO contract. 3 to 5 dams.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-header"><div class="phase-dot amber"></div><h4>Phase 2 (18 to 36 months) - National</h4></div>
+          <p>Enter Madhya Pradesh, Karnataka, Rajasthan markets. 20+ dams. Series A funding.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-header"><div class="phase-dot purple"></div><h4>Phase 3 (36+ months) - Platform</h4></div>
+          <p>National Dam Safety Compliance Platform. 100+ dams. INR 50 Cr ARR target.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <div class="section-label">Market Opportunity</div>
+    <div class="section-title">A Compliance Mandate Creates a Market</div>
+    <p class="section-sub">The Dam Safety Act 2021 is the same forcing function that created the energy QCA market. Nobody has built the equivalent for water yet.</p>
+    <div class="market-cards">
+      <div class="market-card"><div class="big">5,334</div><div class="desc">Large dams in India requiring compliance</div></div>
+      <div class="market-card"><div class="big">1,845</div><div class="desc">Large dams in Maharashtra alone</div></div>
+      <div class="market-card"><div class="big">600+ Cr</div><div class="desc">Hardware TAM for high-risk dams (INR)</div></div>
+      <div class="market-card"><div class="big">50L/yr</div><div class="desc">SaaS revenue per dam (INR)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL -->
+<section class="model">
+  <div class="container">
+    <div class="section-label">Business Model</div>
+    <div class="section-title">Recurring SaaS per Dam</div>
+    <p class="section-sub">Modelled on the energy QCA market. Compliance-as-a-service with sensor installation bundled or customer-funded.</p>
+    <div class="model-grid">
+      <div class="model-card">
+        <span class="tag">Starter</span>
+        <h3>Single Section</h3>
+        <div class="price">INR 10L/yr</div>
+        <p>1 section, up to 20 sensors, real-time dashboard, monthly compliance report.</p>
+      </div>
+      <div class="model-card">
+        <span class="tag">Dam</span>
+        <h3>Full Dam</h3>
+        <div class="price">INR 25L/yr</div>
+        <p>Full dam coverage, unlimited sensors, all compliance formats, anomaly alerts, annual audit support.</p>
+      </div>
+      <div class="model-card">
+        <span class="tag">Enterprise</span>
+        <h3>Multi-Dam</h3>
+        <div class="price">Custom</div>
+        <p>State-level dashboards, centralized compliance portal, API access for SDSO/NDSA integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Interested in the Gosikhurd Pilot?</h2>
+    <p>We are looking for VIDC, MAHAGENCO, and dam operator partnerships for the Phase 0 pilot starting 2026.</p>
+    <div class="cta-buttons">
+      <a href="mailto:contact@bettroi.com" class="btn-primary">Contact Us</a>
+      <a href="https://github.com/chatgptnotes/manikaran-dam-safety" class="btn-secondary" target="_blank">View Research Docs</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>drmhope.com | A Bettroi Product | Manikaran Dam Safety v1.0 | March 2026</p>
+  <p style="margin-top:0.5rem;">contact@bettroi.com | +91 93731 11709 | <a href="https://github.com/chatgptnotes/manikaran-dam-safety">GitHub</a></p>
+</footer>
+
+</body>
+</html>
