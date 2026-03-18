@@ -18,39 +18,136 @@
             <div class="section-label">Platform Architecture</div>
             <h2 class="section-title">Edge to Cloud to Compliance</h2>
         </div>
-        <div class="card fade-in" style="padding:40px;">
-            <div class="diagram" style="text-align:center; font-size: 0.8rem;">
-╔════════════════════════════════════════════════════════════════╗
-║  EDGE LAYER (At Dam Site)                                      ║
-║  Piezometers │ Crack Meters │ Tiltmeters │ Seepage Sensors     ║
-║       └──── Modbus RTU / SDI-12 ────→ Data Logger ─────┐      ║
-╚═════════════════════════════════════════════════════════╪══════╝
-                                                         │
-                                                   LoRaWAN Radio
-                                                         │
-                                              ┌──────────▼──────────┐
-                                              │   Solar-Powered     │
-                                              │   LoRaWAN Gateway   │
-                                              │   + 4G Backhaul     │
-                                              └──────────┬──────────┘
-                                                         │
-╔═════════════════════════════════════════════════════════╪══════╗
-║  CLOUD LAYER (AWS Mumbai)                               │      ║
-║  IoT Core (MQTT) ← ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘      ║
-║       │                                                        ║
-║       ├──→ Time-Series Database (TimescaleDB)                  ║
-║       ├──→ AI/ML Engine (Anomaly Detection + Forecasting)      ║
-║       ├──→ Alert Engine (SMS + Email + Dashboard)              ║
-║       └──→ Compliance Engine (Report Generation)               ║
-╚════════════════════════════════════════════════════════════════╝
-                         │
-╔════════════════════════╪═══════════════════════════════════════╗
-║  APPLICATION LAYER     ▼                                       ║
-║  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐ ║
-║  │ Dam Safety │ │   Canal    │ │   Flood    │ │  Compliance│ ║
-║  │ Dashboard  │ │  Manager   │ │  Forecast  │ │  Reports   │ ║
-║  └────────────┘ └────────────┘ └────────────┘ └────────────┘ ║
-╚════════════════════════════════════════════════════════════════╝</div>
+        <!-- Architecture Infographic -->
+        <div class="arch-infographic fade-in">
+
+            <!-- EDGE LAYER -->
+            <div class="arch-layer arch-layer--edge">
+                <div class="arch-layer__header">
+                    <span class="arch-layer__icon">&#x1F4E1;</span>
+                    <div>
+                        <h3 class="arch-layer__title">Edge Layer</h3>
+                        <span class="arch-layer__subtitle">At Dam Site</span>
+                    </div>
+                </div>
+                <div class="arch-layer__body">
+                    <div class="arch-sensors">
+                        <div class="arch-chip"><span class="arch-chip__dot arch-chip__dot--blue"></span>Piezometers</div>
+                        <div class="arch-chip"><span class="arch-chip__dot arch-chip__dot--cyan"></span>Crack Meters</div>
+                        <div class="arch-chip"><span class="arch-chip__dot arch-chip__dot--teal"></span>Tiltmeters</div>
+                        <div class="arch-chip"><span class="arch-chip__dot arch-chip__dot--purple"></span>Seepage Sensors</div>
+                    </div>
+                    <div class="arch-flow-row">
+                        <div class="arch-flow-badge">Modbus RTU / SDI-12</div>
+                        <span class="arch-flow-arrow">&rarr;</span>
+                        <div class="arch-flow-badge arch-flow-badge--accent">Data Logger</div>
+                        <span class="arch-flow-arrow">&rarr;</span>
+                        <div class="arch-flow-badge">LoRaWAN Radio</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONNECTOR -->
+            <div class="arch-connector">
+                <div class="arch-connector__line"></div>
+                <div class="arch-connector__node">
+                    <span class="arch-connector__icon">&#x2600;&#xFE0F;</span>
+                    <span>Solar-Powered Gateway</span>
+                    <span class="arch-connector__tag">LoRaWAN + 4G Backhaul</span>
+                </div>
+                <div class="arch-connector__line"></div>
+            </div>
+
+            <!-- CLOUD LAYER -->
+            <div class="arch-layer arch-layer--cloud">
+                <div class="arch-layer__header">
+                    <span class="arch-layer__icon">&#x2601;&#xFE0F;</span>
+                    <div>
+                        <h3 class="arch-layer__title">Cloud Layer</h3>
+                        <span class="arch-layer__subtitle">AWS Mumbai</span>
+                    </div>
+                </div>
+                <div class="arch-layer__body">
+                    <div class="arch-cloud-flow">
+                        <div class="arch-cloud-entry">
+                            <div class="arch-cloud-badge">IoT Core (MQTT)</div>
+                        </div>
+                        <div class="arch-cloud-branches">
+                            <div class="arch-cloud-item">
+                                <span class="arch-cloud-item__icon">&#x1F4CA;</span>
+                                <div>
+                                    <strong>Time-Series Database</strong>
+                                    <span>TimescaleDB</span>
+                                </div>
+                            </div>
+                            <div class="arch-cloud-item">
+                                <span class="arch-cloud-item__icon">&#x1F9E0;</span>
+                                <div>
+                                    <strong>AI/ML Engine</strong>
+                                    <span>Anomaly Detection + Forecasting</span>
+                                </div>
+                            </div>
+                            <div class="arch-cloud-item">
+                                <span class="arch-cloud-item__icon">&#x1F514;</span>
+                                <div>
+                                    <strong>Alert Engine</strong>
+                                    <span>SMS + Email + Dashboard</span>
+                                </div>
+                            </div>
+                            <div class="arch-cloud-item">
+                                <span class="arch-cloud-item__icon">&#x1F4CB;</span>
+                                <div>
+                                    <strong>Compliance Engine</strong>
+                                    <span>Report Generation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONNECTOR -->
+            <div class="arch-connector">
+                <div class="arch-connector__line"></div>
+                <div class="arch-connector__pulse"></div>
+                <div class="arch-connector__line"></div>
+            </div>
+
+            <!-- APPLICATION LAYER -->
+            <div class="arch-layer arch-layer--app">
+                <div class="arch-layer__header">
+                    <span class="arch-layer__icon">&#x1F4F1;</span>
+                    <div>
+                        <h3 class="arch-layer__title">Application Layer</h3>
+                        <span class="arch-layer__subtitle">Web &amp; Mobile Dashboards</span>
+                    </div>
+                </div>
+                <div class="arch-layer__body">
+                    <div class="arch-apps">
+                        <div class="arch-app-card">
+                            <span class="arch-app-card__icon">&#x1F3D7;</span>
+                            <strong>Dam Safety</strong>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="arch-app-card">
+                            <span class="arch-app-card__icon">&#x1F30A;</span>
+                            <strong>Canal</strong>
+                            <span>Manager</span>
+                        </div>
+                        <div class="arch-app-card">
+                            <span class="arch-app-card__icon">&#x26C8;&#xFE0F;</span>
+                            <strong>Flood</strong>
+                            <span>Forecast</span>
+                        </div>
+                        <div class="arch-app-card">
+                            <span class="arch-app-card__icon">&#x2705;</span>
+                            <strong>Compliance</strong>
+                            <span>Reports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
